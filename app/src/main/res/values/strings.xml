@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">Android Final</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string-array name="filter_array">
+        <item>Tất cả</item>
+        <item>Đã tạo</item>
+        <item>Đã học</item>
+        <item>Đã tải về</item>
+    </string-array>
+</resources>

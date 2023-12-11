@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/home"
+        android:icon="@drawable/ic_search"
+        android:title="Trang chủ" />
+    <item
+        android:id="@+id/topic"
+        android:icon="@drawable/ic_topic"
+        android:title="Chủ đề" />
+    <item
+        android:id="@+id/add"
+        android:icon="@drawable/ic_add_circle_outline"
+        android:title="Tạo" />
+    <item
+        android:id="@+id/folder"
+        android:icon="@drawable/ic_folder_open"
+        android:title="Thư mục" />
+    <item
+        android:id="@+id/profile"
+        android:icon="@drawable/ic_person"
+        android:title="Hồ sơ" />
+
+</menu>
