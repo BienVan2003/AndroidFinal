@@ -33,9 +33,9 @@ import java.io.BufferedReader
 import java.io.InputStream
 import java.io.InputStreamReader
 
-class AddTopicActivity : AppCompatActivity() {
+class EditTopicActivity : AppCompatActivity() {
     private lateinit var cardAdapter: AddCardAdapter
-    private lateinit var newTopic: Topic
+    private lateinit var editTopic: Topic
 
     private lateinit var edtTitle: EditText
     private lateinit var edtDescription: EditText
@@ -43,7 +43,7 @@ class AddTopicActivity : AppCompatActivity() {
     private lateinit var switchPublic: Switch
     private lateinit var fab: View
     private lateinit var recyclerView: RecyclerView
-
+    private val REQUEST_CODE = 1
     private lateinit var requestPermissionLauncher: ActivityResultLauncher<String>
     private val filePickerLauncher =
         registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
@@ -58,9 +58,9 @@ class AddTopicActivity : AppCompatActivity() {
         setContentView(R.layout.activity_add_topic)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
-        newTopic = Topic("","","","","",ArrayList(), false)
-        newTopic.cardList.add(Card("", "", ""))
-        newTopic.cardList.add(Card("", "", ""))
+        (intent?.extras?.getSerializable("TOPIC") as Topic).let {
+            editTopic = Topic(it.id, it.userId, it.username, it.title, it.description, it.cardList, it.isPublic)
+        }
 
         edtTitle = findViewById(R.id.edtTitle)
         edtDescription = findViewById(R.id.edtDescription)
@@ -69,8 +69,12 @@ class AddTopicActivity : AppCompatActivity() {
         fab = findViewById(R.id.fab)
         recyclerView = findViewById(R.id.recyclerView)
 
+        edtTitle.setText(editTopic.title)
+        edtDescription.setText(editTopic.description)
+        switchPublic.isChecked = editTopic.isPublic
+
         recyclerView.isNestedScrollingEnabled = false;
-        cardAdapter = AddCardAdapter(this, newTopic.cardList, supportActionBar) // cardList là danh sách các đối tượng Card
+        cardAdapter = AddCardAdapter(this, editTopic.cardList, supportActionBar) // cardList là danh sách các đối tượng Card
         recyclerView.layoutManager = LinearLayoutManager(this)
         recyclerView.adapter = cardAdapter
 
@@ -88,7 +92,7 @@ class AddTopicActivity : AppCompatActivity() {
 
             override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
                 val position = viewHolder.adapterPosition
-                newTopic.cardList.removeAt(position)
+                editTopic.cardList.removeAt(position)
                 cardAdapter.notifyItemRemoved(position)
 
             }
@@ -97,8 +101,8 @@ class AddTopicActivity : AppCompatActivity() {
         itemTouchHelper.attachToRecyclerView(recyclerView)
 
         fab.setOnClickListener {
-            newTopic.cardList.add(Card("", "", ""))
-            val itemPosition = newTopic.cardList.size
+            editTopic.cardList.add(Card("", "", ""))
+            val itemPosition = editTopic.cardList.size
             cardAdapter.notifyItemInserted(itemPosition)
             supportActionBar?.title = "${itemPosition}/${itemPosition}"
         }
@@ -116,7 +120,7 @@ class AddTopicActivity : AppCompatActivity() {
             requestStoragePermission()
         }
         switchPublic.setOnCheckedChangeListener { buttonView, isChecked ->
-            newTopic.isPublic = isChecked
+            editTopic.isPublic = isChecked
         }
 
     }
@@ -133,14 +137,14 @@ class AddTopicActivity : AppCompatActivity() {
                 true
             }
             R.id.miSave -> {
-                createTopic()
+                handleEditTopic()
                 true
             }
             else -> super.onOptionsItemSelected(item)
         }
     }
 
-    private fun createTopic() {
+    private fun handleEditTopic() {
         if (edtTitle.text.toString().isEmpty()) {
             // Hiển thị AlertDialog khi tiêu đề trống
             val alertDialogBuilder = AlertDialog.Builder(this)
@@ -156,24 +160,20 @@ class AddTopicActivity : AppCompatActivity() {
 
         val user = Firebase.auth.currentUser
         user?.let {
-            val uid = it.uid
-            val username = it.displayName.toString()
             val title = edtTitle.text.toString()
             val description = edtDescription.text.toString()
 
-            newTopic.title = title
-            newTopic.description = description
-            newTopic.username = username
-            newTopic.userId = uid
+            editTopic.title = title
+            editTopic.description = description
 
             Firebase.firestore.collection("topics")
-                .add(newTopic)
-                .addOnSuccessListener { documentReference ->
-                    Log.d("TAG", "DocumentSnapshot added with ID: ${documentReference.id}")
+                .document(editTopic.id)
+                .set(editTopic)
+                .addOnSuccessListener {
+                    setResult(RESULT_OK, Intent().putExtra("TOPIC", editTopic))
+                    finish()
                 }
-                .addOnFailureListener { e ->
-                    Log.w("TAG", "Error adding document", e)
-                }
+                .addOnFailureListener { e -> Log.w("TAG", "Error updating document", e) }
         }
     }
 
@@ -204,14 +204,14 @@ class AddTopicActivity : AppCompatActivity() {
             val inputStream: InputStream? = contentResolver.openInputStream(uri)
             val reader = BufferedReader(InputStreamReader(inputStream))
 //            val dataList: MutableList<Pair<String, String>> = ArrayList()
-            newTopic.cardList.clear()
+            editTopic.cardList.clear()
             var line: String?
             while (reader.readLine().also { line = it } != null) {
                 // Phân tách dữ liệu dựa trên dấu phẩy
                 val columns = line!!.split(",")
                 if (columns.size == 2) {
                     val card = Card(columns[0], columns[1], "")
-                    newTopic.cardList.add(card)
+                    editTopic.cardList.add(card)
                 }
             }
 

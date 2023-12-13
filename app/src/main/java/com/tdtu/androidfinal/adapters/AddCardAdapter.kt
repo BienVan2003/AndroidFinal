@@ -12,8 +12,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.tdtu.androidfinal.R
 import com.tdtu.androidfinal.models.Card
 
-class CardAdapter(val context: Context, private val cardList: ArrayList<Card>, private val actionBar: ActionBar) :
-    RecyclerView.Adapter<CardAdapter.CardViewHolder>() {
+class AddCardAdapter(var context: Context?, private var cardList: ArrayList<Card>, private var actionBar: ActionBar?) :
+    RecyclerView.Adapter<AddCardAdapter.CardViewHolder>() {
 
     class CardViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val editTextTerm: EditText = itemView.findViewById(R.id.edtTerm)
@@ -22,7 +22,7 @@ class CardAdapter(val context: Context, private val cardList: ArrayList<Card>, p
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CardViewHolder {
         val itemView = LayoutInflater.from(parent.context)
-            .inflate(R.layout.item_card, parent, false)
+            .inflate(R.layout.item_add_card, parent, false)
         itemView.requestFocus()
         return CardViewHolder(itemView)
     }
@@ -37,13 +37,13 @@ class CardAdapter(val context: Context, private val cardList: ArrayList<Card>, p
 
         editTextTerm.setOnFocusChangeListener { _, hasFocus ->
             if (hasFocus) {
-                actionBar.title = "${position + 1}/${cardList.size}"
+                actionBar?.title = "${cardList.indexOf(currentCard) + 1}/${cardList.size}"
             }
         }
 
         editTextDefine.setOnFocusChangeListener { _, hasFocus ->
             if (hasFocus) {
-                actionBar.title = "${position + 1}/${cardList.size}"
+                actionBar?.title = "${cardList.indexOf(currentCard) + 1}/${cardList.size}"
             }
         }
 
@@ -78,8 +78,11 @@ class CardAdapter(val context: Context, private val cardList: ArrayList<Card>, p
         })
 
     }
-
     override fun getItemCount(): Int {
         return cardList.size
+    }
+    fun release(){
+        context = null
+        actionBar = null
     }
 }

@@ -1,3 +1,8 @@
 package com.tdtu.androidfinal.models
 
-data class Card(var term: String, var define: String, var image: String)
+import android.os.Parcelable
+import kotlinx.parcelize.Parcelize
+import java.io.Serializable
+
+//@Parcelize
+data class Card(var term: String, var define: String, var image: String): Serializable

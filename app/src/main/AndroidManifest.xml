@@ -2,11 +2,11 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <uses-permission android:name="android.permission.INTERNET"/>
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
-    <uses-permission android:name="android.permission.MANAGE_EXTERNAL_STORAGE"/>
-
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.MANAGE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <application
         android:allowBackup="true"
@@ -19,23 +19,32 @@
         android:theme="@style/Theme.AndroidFinal"
         tools:targetApi="31">
         <activity
-            android:name=".activities.SettingActivity"
-            android:label="Cài đặt"
+            android:name=".activities.EditTopicActivity"
             android:exported="false" />
+        <activity
+            android:name=".activities.FlashCardActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activities.DetailTopicActivity"
+            android:exported="true" />
+        <activity
+            android:name=".activities.SettingActivity"
+            android:exported="true"
+            android:label="Cài đặt" />
         <activity
             android:name=".activities.RegisterActivity"
-            android:exported="false" />
+            android:exported="true" />
         <activity
             android:name=".activities.LoginActivity"
-            android:exported="false" />
+            android:exported="true" />
         <activity
             android:name=".activities.ChangePasswordActivity"
-            android:label="Đổi mật khẩu"
-            android:exported="false" />
+            android:exported="true"
+            android:label="Đổi mật khẩu" />
         <activity
             android:name=".activities.AddTopicActivity"
-            android:label="Tạo học phần"
-            android:exported="false" />
+            android:exported="true"
+            android:label="Tạo học phần" />
         <activity
             android:name=".activities.MainActivity"
             android:exported="true">
