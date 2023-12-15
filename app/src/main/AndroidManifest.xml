@@ -19,6 +19,15 @@
         android:theme="@style/Theme.AndroidFinal"
         tools:targetApi="31">
         <activity
+            android:name=".activities.AddTopicToFolderActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activities.DetailFolderActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activities.AddFolderActivity"
+            android:exported="false" />
+        <activity
             android:name=".activities.EditTopicActivity"
             android:exported="false" />
         <activity

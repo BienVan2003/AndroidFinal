@@ -1,10 +1,10 @@
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/cardView"
     android:layout_width="match_parent"
     android:layout_height="100dp"
     android:layout_margin="16dp"
-    android:background="?android:attr/selectableItemBackground"
     app:cardBackgroundColor="#FFFFFF"
     app:cardCornerRadius="8dp"
     app:cardElevation="4dp">
@@ -21,7 +21,7 @@
 
             <TextView
                 android:id="@+id/tvTerm"
-                android:layout_width="200dp"
+                android:layout_width="220dp"
                 android:layout_height="wrap_content"
                 android:layout_margin="16dp"
                 android:text="School"
@@ -29,18 +29,24 @@
 
             <LinearLayout
                 android:layout_margin="16dp"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content">
 
-                <TextView
+                <com.google.android.material.textview.MaterialTextView
                     android:id="@+id/icVolume"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
+                    app:iconTint="@color/purple"
                     android:drawableRight="@drawable/ic_volume_up"
-                    android:gravity="end"
                     />
-                <TextView
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_margin="16dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+                <com.google.android.material.textview.MaterialTextView
                     android:id="@+id/icStar"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"

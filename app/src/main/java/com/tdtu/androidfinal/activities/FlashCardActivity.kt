@@ -23,12 +23,12 @@ class FlashCardActivity : AppCompatActivity() {
         supportActionBar?.apply {
             setDisplayHomeAsUpEnabled(true)
             setHomeAsUpIndicator(R.drawable.ic_close)
+            title = ""
         }
 
         (intent?.extras?.getSerializable("TOPIC") as Topic).let {
             topic = Topic(it.id, it.userId, it.username, it.title, it.description, it.cardList, it.isPublic)
         }
-        supportActionBar?.title = ""
         adapter = CardStackAdapter(this, topic.cardList)
         manager = CardStackLayoutManager(this)
         binding.cardStackView.layoutManager = manager

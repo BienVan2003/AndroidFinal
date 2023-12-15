@@ -15,7 +15,7 @@ class HomeFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        requireActivity().title = "Home"
+        requireActivity().title = "Trang chủ"
         (requireActivity() as? AppCompatActivity)?.supportActionBar?.show()
         return inflater.inflate(R.layout.fragment_home, container, false)
     }

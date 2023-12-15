@@ -2,4 +2,5 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item android:id="@+id/miAddTopic" android:icon="@drawable/ic_add" android:title="Add topic" app:showAsAction="always"/>
+    <item android:id="@+id/miEditFolder" android:icon="@drawable/ic_add" android:title="Sữa thư mục" />
 </menu>

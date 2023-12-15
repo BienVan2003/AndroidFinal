@@ -7,7 +7,7 @@ import java.io.Serializable
 
 
 data class Topic(
-    var id: String,
+    var id: String = "",
     var userId: String,
     var username: String,
     var title: String,

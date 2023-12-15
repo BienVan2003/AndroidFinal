@@ -18,12 +18,12 @@ class ProfileFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_profile, container, false)
-        requireActivity().title = "Profile"
+        requireActivity().title = "Hồ sơ"
         val btnSettings = view.findViewById<Button>(R.id.btnSettings)
         btnSettings.setOnClickListener {
             startActivity(Intent(activity, SettingActivity::class.java))
         }
+
         return view
     }
-
 }

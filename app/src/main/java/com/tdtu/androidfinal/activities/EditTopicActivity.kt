@@ -126,7 +126,7 @@ class EditTopicActivity : AppCompatActivity() {
     }
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         val inflater: MenuInflater = menuInflater
-        inflater.inflate(R.menu.add_topic_menu, menu)
+        inflater.inflate(R.menu.save_topic_menu, menu)
         return true
     }
     override fun onOptionsItemSelected(item: MenuItem): Boolean {

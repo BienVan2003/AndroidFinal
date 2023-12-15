@@ -27,6 +27,7 @@ import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import com.tdtu.androidfinal.R
 import com.tdtu.androidfinal.adapters.AddCardAdapter
+import com.tdtu.androidfinal.databinding.ActivityAddFolderBinding
 import com.tdtu.androidfinal.models.Card
 import com.tdtu.androidfinal.models.Topic
 import java.io.BufferedReader
@@ -122,7 +123,7 @@ class AddTopicActivity : AppCompatActivity() {
     }
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         val inflater: MenuInflater = menuInflater
-        inflater.inflate(R.menu.add_topic_menu, menu)
+        inflater.inflate(R.menu.save_topic_menu, menu)
         return true
     }
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
