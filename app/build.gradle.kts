@@ -46,7 +46,6 @@ dependencies {
     implementation("com.google.firebase:firebase-storage:20.3.0")
     implementation("com.google.code.gson:gson:2.8.9")
     implementation("com.github.yuyakaido:CardStackView:v2.3.4")
-    implementation("com.google.android.gms:play-services-tasks:17.2.1")
     debugImplementation("com.squareup.leakcanary:leakcanary-android:2.12")
 
 

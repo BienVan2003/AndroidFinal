@@ -1,21 +1,17 @@
 package com.tdtu.androidfinal.activities
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.tdtu.androidfinal.R
 import com.tdtu.androidfinal.adapters.TopicAdapter
-import com.tdtu.androidfinal.adapters.ViewCardAdapter
 import com.tdtu.androidfinal.databinding.ActivityDetailFolderBinding
-import com.tdtu.androidfinal.databinding.ActivityDetailTopicBinding
 import com.tdtu.androidfinal.models.Folder
-import com.tdtu.androidfinal.models.Topic
 
 class DetailFolderActivity : AppCompatActivity() {
     private val binding by lazy { ActivityDetailFolderBinding.inflate(layoutInflater) }

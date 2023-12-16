@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".activities.TestActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tvQuestion"
+            android:textSize="24sp"
+            android:layout_margin="16dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center|start"
+            android:text="Hello" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_margin="16dp"
+        android:layout_weight="1"
+        android:gravity="bottom"
+        android:orientation="vertical">
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnAnswer1"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:gravity="start|center_vertical"
+            android:text="Xin chào"
+            android:textColor="@color/black"
+            app:backgroundTint="@color/white"
+            app:cornerRadius="4dp"
+            app:rippleColor="@color/purple"
+            app:strokeColor="@color/purple"
+            app:strokeWidth="2dp" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnAnswer2"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:gravity="start|center_vertical"
+            android:text="Trường học"
+            android:textColor="@color/black"
+            app:backgroundTint="@color/white"
+            app:cornerRadius="4dp"
+            app:rippleColor="@color/purple"
+            app:strokeColor="@color/purple"
+            app:strokeWidth="2dp" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnAnswer3"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:gravity="start|center_vertical"
+            android:text="Thuốc"
+            android:textColor="@color/black"
+            app:backgroundTint="@color/white"
+            app:cornerRadius="4dp"
+            app:rippleColor="@color/purple"
+            app:strokeColor="@color/purple"
+            app:strokeWidth="2dp" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnAnswer4"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:gravity="start|center_vertical"
+            android:text="Phòng"
+            android:textColor="@color/black"
+            app:backgroundTint="@color/white"
+            app:cornerRadius="4dp"
+            app:rippleColor="@color/purple"
+            app:strokeColor="@color/purple"
+            app:strokeWidth="2dp" />
+    </LinearLayout>
+</LinearLayout>

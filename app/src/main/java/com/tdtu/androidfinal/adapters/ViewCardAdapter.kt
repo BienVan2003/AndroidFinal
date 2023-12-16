@@ -7,13 +7,11 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.LinearLayout
 import android.widget.TextView
-import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.textview.MaterialTextView
 import com.tdtu.androidfinal.R
-import com.tdtu.androidfinal.models.*
+import com.tdtu.androidfinal.models.Card
 import java.util.Locale
 
 class ViewCardAdapter(var context: Context?, private var cardList: ArrayList<Card>) :
@@ -46,7 +44,6 @@ class ViewCardAdapter(var context: Context?, private var cardList: ArrayList<Car
 
         holder.tvTerm.setOnClickListener {
             holder.tvTerm.setTextColor(Color.YELLOW)
-            speakEnglish(termToSpeak)
             textToSpeechEnglish.setOnUtteranceCompletedListener { utteranceId ->
                 if (utteranceId == "your_unique_utterance_id") {
                     holder.tvTerm.setTextColor(myTextColor)
@@ -77,7 +74,6 @@ class ViewCardAdapter(var context: Context?, private var cardList: ArrayList<Car
             val myColorIcon = holder.icVolume.textColors
 
             holder.tvTerm.setTextColor(Color.YELLOW)
-            speakEnglish(termToSpeak)
             textToSpeechEnglish.setOnUtteranceCompletedListener { utteranceId ->
                 if (utteranceId == "your_unique_utterance_id") {
                     holder.tvTerm.setTextColor(myTextColor)
@@ -110,14 +106,23 @@ class ViewCardAdapter(var context: Context?, private var cardList: ArrayList<Car
 
     fun release() {
         context = null
+        cardList.clear()
+        textToSpeechEnglish.stop()
+        textToSpeechEnglish.shutdown()
+        textToSpeechVietnamese.stop()
+        textToSpeechVietnamese.shutdown()
     }
+
     override fun onInit(status: Int) {
         if (status == TextToSpeech.SUCCESS) {
             // Đặt ngôn ngữ cho TextToSpeech
-            val languageResult = textToSpeechEnglish.setLanguage(Locale.US)
+            val languageResult = textToSpeechEnglish.setLanguage(Locale.ENGLISH)
 
             if (languageResult == TextToSpeech.LANG_MISSING_DATA || languageResult == TextToSpeech.LANG_NOT_SUPPORTED) {
                 Log.e("TAG", "Language is not supported.")
+            }else {
+                // Ngôn ngữ Tiếng Anh (United States) được hỗ trợ, tiến hành cài đặt ngôn ngữ
+                textToSpeechEnglish.language = Locale.ENGLISH
             }
         } else {
             Log.e("TAG", "Initialization failed.")
@@ -128,17 +133,12 @@ class ViewCardAdapter(var context: Context?, private var cardList: ArrayList<Car
             val langResult = textToSpeechVietnamese.setLanguage(Locale("vi"))
             if (langResult == TextToSpeech.LANG_MISSING_DATA || langResult == TextToSpeech.LANG_NOT_SUPPORTED) {
                 Log.e("TAG", "Vietnamese language is not supported.")
+            } else {
+                // Ngôn ngữ Tiếng Việt được hỗ trợ, tiến hành cài đặt ngôn ngữ
+                textToSpeechVietnamese.language = Locale("vi")
             }
         } else {
             Log.e("TAG", "Initialization failed.")
         }
-
-    }
-
-    private fun speakEnglish(text: String) {
-        textToSpeechEnglish.speak(text, TextToSpeech.QUEUE_FLUSH, null, null)
-    }
-    private fun speakVietnamese(text: String) {
-        textToSpeechVietnamese.speak(text, TextToSpeech.QUEUE_FLUSH, null, null)
     }
 }
