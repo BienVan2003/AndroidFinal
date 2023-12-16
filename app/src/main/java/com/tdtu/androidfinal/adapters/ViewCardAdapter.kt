@@ -7,22 +7,25 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.textview.MaterialTextView
 import com.tdtu.androidfinal.R
+import com.tdtu.androidfinal.databinding.ActivityDetailTopicBinding
 import com.tdtu.androidfinal.models.Card
 import java.util.Locale
 
-class ViewCardAdapter(var context: Context?, private var cardList: ArrayList<Card>) :
+class ViewCardAdapter(var context: Context?,
+                      private var cardList: ArrayList<Card>, private var favoriteCards: ArrayList<Card>) :
     RecyclerView.Adapter<ViewCardAdapter.CardViewHolder>(), TextToSpeech.OnInitListener {
     private var textToSpeechEnglish: TextToSpeech = TextToSpeech(context, this)
     private var textToSpeechVietnamese: TextToSpeech = TextToSpeech(context, this)
-
     class CardViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val tvTerm: TextView = itemView.findViewById(R.id.tvTerm)
         val tvDefine: TextView = itemView.findViewById(R.id.tvDefine)
-        val icVolume: MaterialTextView = itemView.findViewById(R.id.icVolume)
+        val icVolume: ImageView = itemView.findViewById(R.id.icVolume)
+        var icStar: ImageView = itemView.findViewById(R.id.icStar)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CardViewHolder {
@@ -39,6 +42,12 @@ class ViewCardAdapter(var context: Context?, private var cardList: ArrayList<Car
         holder.tvDefine.text = currentCard.define
         val termToSpeak = holder.tvTerm.text.toString()
         val defineToSpeak = holder.tvDefine.text.toString()
+
+        if(favoriteCards.contains(currentCard)){
+            holder.icStar.setImageResource(R.drawable.ic_star_selected)
+        }else{
+            holder.icStar.setImageResource(R.drawable.ic_star_unselected)
+        }
 
         val myTextColor = holder.tvTerm.textColors
 
@@ -71,7 +80,7 @@ class ViewCardAdapter(var context: Context?, private var cardList: ArrayList<Car
             textToSpeechVietnamese.speak(defineToSpeak, TextToSpeech.QUEUE_FLUSH, params)
         }
         holder.icVolume.setOnClickListener {
-            val myColorIcon = holder.icVolume.textColors
+            holder.icVolume.setImageResource(R.drawable.ic_volume)
 
             holder.tvTerm.setTextColor(Color.YELLOW)
             textToSpeechEnglish.setOnUtteranceCompletedListener { utteranceId ->
@@ -82,7 +91,7 @@ class ViewCardAdapter(var context: Context?, private var cardList: ArrayList<Car
                     textToSpeechVietnamese.setOnUtteranceCompletedListener { utteranceId ->
                         if (utteranceId == "your_unique_utterance_id") {
                             holder.tvDefine.setTextColor(myTextColor)
-                            holder.icVolume.setTextColor(myColorIcon)
+                            holder.icVolume.setImageResource(R.drawable.ic_volume_up)
                         }
                     }
 
@@ -96,7 +105,16 @@ class ViewCardAdapter(var context: Context?, private var cardList: ArrayList<Car
             val params1 = HashMap<String, String>()
             params1[TextToSpeech.Engine.KEY_PARAM_UTTERANCE_ID] = "your_unique_utterance_id"
             textToSpeechEnglish.speak(termToSpeak, TextToSpeech.QUEUE_FLUSH, params1)
+        }
 
+        holder.icStar.setOnClickListener {
+            if(favoriteCards.contains(currentCard)){
+                holder.icStar.setImageResource(R.drawable.ic_star_unselected)
+                favoriteCards.remove(currentCard)
+            }else{
+                holder.icStar.setImageResource(R.drawable.ic_star_selected)
+                favoriteCards.add(currentCard)
+            }
         }
     }
 
@@ -120,7 +138,7 @@ class ViewCardAdapter(var context: Context?, private var cardList: ArrayList<Car
 
             if (languageResult == TextToSpeech.LANG_MISSING_DATA || languageResult == TextToSpeech.LANG_NOT_SUPPORTED) {
                 Log.e("TAG", "Language is not supported.")
-            }else {
+            } else {
                 // Ngôn ngữ Tiếng Anh (United States) được hỗ trợ, tiến hành cài đặt ngôn ngữ
                 textToSpeechEnglish.language = Locale.ENGLISH
             }

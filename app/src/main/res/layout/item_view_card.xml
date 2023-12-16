@@ -32,13 +32,13 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content">
 
-                <com.google.android.material.textview.MaterialTextView
+                <ImageView
                     android:id="@+id/icVolume"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     app:iconTint="@color/purple"
-                    android:drawableRight="@drawable/ic_volume_up"
+                    android:src="@drawable/ic_volume_up"
                     />
 
             </LinearLayout>
@@ -46,12 +46,12 @@
                 android:layout_margin="16dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content">
-                <com.google.android.material.textview.MaterialTextView
+                <ImageView
                     android:id="@+id/icStar"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:drawableRight="@drawable/ic_star_border"
+                    android:src="@drawable/ic_star_unselected"
                     android:gravity="end"
                     />
             </LinearLayout>

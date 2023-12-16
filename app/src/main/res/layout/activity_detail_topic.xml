@@ -6,10 +6,11 @@
     android:layout_height="match_parent"
     android:background="@color/gainsBoro"
     tools:context=".activities.DetailTopicActivity">
+
     <androidx.core.widget.NestedScrollView
-        android:contentDescription="Hoc"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:contentDescription="Hoc">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -17,28 +18,28 @@
             android:orientation="vertical">
 
             <TextView
-                android:layout_marginTop="8dp"
-                android:layout_marginLeft="16dp"
-                android:layout_marginRight="16dp"
                 android:id="@+id/tvTitle"
-                android:textColor="@color/silver"
-                android:textSize="32dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Animal" />
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginRight="16dp"
+                android:text="Animal"
+                android:textColor="@color/silver"
+                android:textSize="32dp" />
 
             <LinearLayout
-                android:layout_marginTop="8dp"
-                android:layout_marginLeft="16dp"
-                android:layout_marginRight="16dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginRight="16dp"
                 android:orientation="horizontal">
 
                 <androidx.cardview.widget.CardView
-                    app:cardCornerRadius="24dp"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" >
+                    android:layout_height="wrap_content"
+                    app:cardCornerRadius="24dp">
 
                     <ImageView
                         android:id="@+id/ivAvatar"
@@ -49,88 +50,130 @@
 
                 <TextView
                     android:id="@+id/tvUsername"
-                    android:textColor="@color/silver"
-                    android:layout_marginLeft="5dp"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:gravity="center"
+                    android:layout_marginLeft="5dp"
                     android:layout_weight="1"
-                    android:text="bienz" />
+                    android:gravity="center"
+                    android:text="bienz"
+                    android:textColor="@color/silver" />
 
                 <TextView
                     android:id="@+id/tvTotalCard"
-                    android:textColor="@color/silver"
-                    android:layout_marginLeft="10dp"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:gravity="center"
+                    android:layout_marginLeft="10dp"
                     android:layout_weight="1"
-                    android:text="20 thuật ngữ" />
+                    android:gravity="center"
+                    android:text="20 thuật ngữ"
+                    android:textColor="@color/silver" />
 
             </LinearLayout>
+
             <TextView
                 android:id="@+id/tvDescription"
-                android:layout_marginTop="8dp"
-                android:layout_marginLeft="16dp"
-                android:layout_marginRight="16dp"
-                android:textColor="@color/silver"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Description" />
-            <Button
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginRight="16dp"
+                android:text="Description"
+                android:textColor="@color/silver" />
+
+            <com.google.android.material.button.MaterialButton
                 android:id="@+id/btnFlashCard"
+                android:layout_width="match_parent"
+                android:layout_height="70dp"
+                android:layout_marginLeft="16dp"
                 android:layout_marginTop="8dp"
                 android:layout_marginRight="16dp"
-                android:layout_marginLeft="16dp"
+                android:layout_weight="1"
+                android:backgroundTint="@color/white"
                 android:drawableLeft="@drawable/ic_filter_none"
-                android:textColor="@color/silver"
-                android:backgroundTint="@color/white"
                 android:gravity="center_vertical"
-                android:layout_width="match_parent"
-                android:layout_height="70dp"
-                android:layout_weight="1"
+                android:text="Thẻ ghi nhớ"
+                android:textColor="@color/silver"
+                app:cornerRadius="10dp"
                 app:iconPadding="20dp"
-                android:text="Thẻ ghi nhớ" />
+                app:rippleColor="@color/purple" />
 
-            <Button
+            <com.google.android.material.button.MaterialButton
                 android:id="@+id/btnTest"
+                android:layout_width="match_parent"
+                android:layout_height="70dp"
+                android:layout_marginLeft="16dp"
                 android:layout_marginTop="8dp"
                 android:layout_marginRight="16dp"
-                android:layout_marginLeft="16dp"
+                android:layout_weight="1"
+                android:backgroundTint="@color/white"
                 android:drawableLeft="@drawable/ic_format_list_bulleted"
-                android:textColor="@color/silver"
-                android:backgroundTint="@color/white"
                 android:gravity="center_vertical"
+                android:text="Trắc nghiệm"
+                android:textColor="@color/silver"
+                app:cornerRadius="10dp"
+                app:iconPadding="20dp"
+                app:rippleColor="@color/purple" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnTypeWord"
                 android:layout_width="match_parent"
                 android:layout_height="70dp"
-                android:layout_weight="1"
-                app:iconPadding="20dp"
-                android:text="Trắc nghiệm" />
-
-            <Button
-                android:id="@+id/btnTypeWord"
+                android:layout_marginLeft="16dp"
                 android:layout_marginTop="8dp"
                 android:layout_marginRight="16dp"
-                android:layout_marginLeft="16dp"
-                android:drawableLeft="@drawable/ic_border_color"
-                android:textColor="@color/silver"
-                android:backgroundTint="@color/white"
-                android:gravity="center_vertical"
-                android:layout_width="match_parent"
-                android:layout_height="70dp"
                 android:layout_weight="1"
+                android:backgroundTint="@color/white"
+                android:drawableLeft="@drawable/ic_border_color"
+                android:gravity="center_vertical"
+                android:text="Gõ từ"
+                android:textColor="@color/silver"
+                app:cornerRadius="10dp"
                 app:iconPadding="20dp"
-                android:text="Gõ từ" />
+                app:rippleColor="@color/purple" />
+
+            <LinearLayout
+                android:id="@+id/favorite"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginRight="16dp"
+                android:orientation="horizontal">
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnAll"
+                    android:layout_width="0dp"
+                    android:layout_height="48dp"
+                    android:layout_weight="1"
+                    android:text="Học hết"
+                    android:textColor="@color/white"
+                    app:backgroundTint="@color/purple_500"
+                    app:cornerRadius="0dp"
+                    app:strokeColor="@color/purple_500"
+                    app:strokeWidth="2dp" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnFavorite"
+                    android:layout_width="0dp"
+                    android:layout_height="48dp"
+                    android:layout_weight="1"
+                    android:text="Favorite"
+                    android:textColor="@color/purple_500"
+                    app:backgroundTint="@color/white"
+                    app:cornerRadius="0dp"
+                    app:strokeColor="@color/purple_500"
+                    app:strokeWidth="2dp" />
+            </LinearLayout>
 
             <TextView
-                android:textSize="24dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginLeft="16dp"
-                android:layout_marginBottom="8dp"
-                android:textColor="@color/silver"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Thẻ" />
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp"
+                android:text="Thẻ"
+                android:textColor="@color/silver"
+                android:textSize="24dp" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recyclerView"
